@@ -1,6 +1,5 @@
 import VDom from "../framework/Vdom";
 
-const grid = 64;
 const numRows = 13;
 const numCols = 15;
 const ELEMENTS = {

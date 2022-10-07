@@ -8,6 +8,9 @@ body {
     align-items: center;
     justify-content: center;
 }
+h1 {
+    color: white;
+}
 
 section {
     width: 100%;
@@ -21,6 +24,17 @@ footer{
 
 }
 
+.start-screen {
+    height: 650px;
+    width: 750px;
+    background-color: forestgreen;
+    text-align: center;
+}
+.start-screen input {
+    margin: 30%;
+    height: 50px;
+    width: 250px;
+}
 .container {
     height: 650px;
     width: 750px;
@@ -28,8 +42,6 @@ footer{
     /*padding: 0;*/
     display: flex;
     flex-flow: row wrap;
-    background-color: yellow;
-    /*background-color: forestgreen;*/
 }
 .container div {
     width: 50px;

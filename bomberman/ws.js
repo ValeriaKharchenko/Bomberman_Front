@@ -1,3 +1,6 @@
+import {store} from "./store";
+import {setPlayer, startGame} from "./reducers";
+
 let ws;
 const SET_PLAYER = "setPlayer";
 const SET_BOMB = "setBomb";
@@ -11,6 +14,8 @@ const powerUp = {
     speedUp: "speedUp",
 }
 
+const dispatch = store.dispatch.bind(store);
+
 export default {
     start(playerName) {
         ws = new WebSocket("ws://localhost:8008");
@@ -22,8 +27,10 @@ export default {
         };
         ws.onmessage = (msg) => {
             const msgJSON = JSON.parse(msg.data);
-            if (msgJSON.type ==="roomID") {
-                console.log(msgJSON.roomId);
+            if (msgJSON.type === "roomID") {
+                console.log(msgJSON);
+                dispatch(setPlayer(msgJSON.name, msgJSON.roomId));
+                dispatch(startGame());
             } else {
                 console.log(msgJSON);
             }
