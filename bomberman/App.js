@@ -12,7 +12,7 @@ export function App() {
         <section>
             <Header/>
             {
-                inGame? <GameField template={generateLevel(template)}/> :
+                inGame? <GameField template={generateLevel(template, 3)}/> :
                     <StartScreen/>
             }
 

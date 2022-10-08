@@ -14,6 +14,9 @@ const types = {
     destroyableWall: 1,
     emptyCell: 'x',
     blank: '.',
+    speedUp: 2,
+    bombRadius: 3,
+    bombs: 4,
 }
 
 export function GameField({template}) {
@@ -37,7 +40,18 @@ export function GameField({template}) {
     )
 }
 
-export function generateLevel(template) {
+function addPowerUp(num, type, template) {
+    while (num !== 0) {
+        let i = Math.floor(Math.random() * numRows);
+        let j = Math.floor(Math.random() * numCols);
+        if (template[i][j] === types.destroyableWall) {
+            template[i][j] = type;
+            num--;
+        }
+    }
+}
+
+export function generateLevel(template, numberOfPlayers) {
     for (let row = 0; row < numRows; row++) {
         for (let col = 0; col < numCols; col++) {
             if (template[row][col] === "." && Math.random() < 0.90) {
@@ -45,6 +59,10 @@ export function generateLevel(template) {
             }
         }
     }
+    addPowerUp(numberOfPlayers,  types.bombs, template);
+    addPowerUp(numberOfPlayers,  types.speedUp, template);
+    addPowerUp(numberOfPlayers, types.bombRadius, template);
+    console.log(template);
     return template;
 }
 
